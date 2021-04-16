@@ -44,41 +44,22 @@ class ViewController: UIViewController {
         return collectionView
     }()
     
-    var image: UIImageView = {
-        let a = UIImageView(image: UIImage(named: "test"))
-        a.translatesAutoresizingMaskIntoConstraints = false
-        return a
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(image)
+        Do any additional setup after loading the view.
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: "cell")
+        
+        view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            image.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            image.widthAnchor.constraint(equalToConstant: 200),
-            image.heightAnchor.constraint(equalToConstant: 200)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            collectionView.heightAnchor.constraint(equalToConstant: 150)
         ])
         
-        let layer = CAGradientLayer()
-        layer.colors = [UIColor.white.cgColor, UIColor.blue.cgColor, UIColor.blue.cgColor]
-        layer.frame = image.bounds
-        image.layer.addSublayer(layer)
-        
-        // Do any additional setup after loading the view.
-        //        collectionView.register(Cell.self, forCellWithReuseIdentifier: "cell")
-        //
-        //        view.addSubview(collectionView)
-        //        NSLayoutConstraint.activate([
-        //            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        //            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        //            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-        //            collectionView.heightAnchor.constraint(equalToConstant: 150)
-        //        ])
-        //
-        //        collectionView.delegate = self
-        //        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }
 
